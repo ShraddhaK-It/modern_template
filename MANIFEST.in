@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include modern_template *.css
+recursive-include modern_template *.csv
+recursive-include modern_template *.html
+recursive-include modern_template *.ico
+recursive-include modern_template *.js
+recursive-include modern_template *.json
+recursive-include modern_template *.md
+recursive-include modern_template *.png
+recursive-include modern_template *.py
+recursive-include modern_template *.svg
+recursive-include modern_template *.txt
+recursive-exclude modern_template *.pyc
