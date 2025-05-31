@@ -1,0 +1,276 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ _("Dashboard") }}{% endblock %}
+
+{% block page_content %}
+<div class="new-temp-container">
+  <!-- Dashboard Header -->
+  <section class="dashboard-header fade-in-up">
+    <div class="dashboard-title">
+      <h1>Business Dashboard</h1>
+      <p class="subtitle">Welcome back! Here's an overview of your business performance</p>
+    </div>
+    <div class="dashboard-actions">
+      <div class="date-filter">
+        <select class="form-select">
+          <option>Today</option>
+          <option>This Week</option>
+          <option selected>This Month</option>
+          <option>This Quarter</option>
+          <option>This Year</option>
+          <option>Custom Range</option>
+        </select>
+      </div>
+      <button class="btn btn-primary">
+        <i class="fa fa-sync"></i> Refresh
+      </button>
+    </div>
+  </section>
+
+  <!-- Stats Cards -->
+  <section class="stats-cards">
+    <div class="stats-grid">
+      <div class="stat-card fade-in-up" style="animation-delay: 0.1s;">
+        <div class="stat-icon success">
+          <i class="fa fa-dollar-sign"></i>
+        </div>
+        <div class="stat-content">
+          <h3 class="stat-title">Total Revenue</h3>
+          <p class="stat-value count-up" data-count="128745">0</p>
+          <p class="stat-change positive">+12.5% <span>vs last period</span></p>
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in-up" style="animation-delay: 0.2s;">
+        <div class="stat-icon primary">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <div class="stat-content">
+          <h3 class="stat-title">New Orders</h3>
+          <p class="stat-value count-up" data-count="356">0</p>
+          <p class="stat-change positive">+8.3% <span>vs last period</span></p>
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in-up" style="animation-delay: 0.3s;">
+        <div class="stat-icon warning">
+          <i class="fa fa-users"></i>
+        </div>
+        <div class="stat-content">
+          <h3 class="stat-title">New Customers</h3>
+          <p class="stat-value count-up" data-count="42">0</p>
+          <p class="stat-change negative">-2.7% <span>vs last period</span></p>
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in-up" style="animation-delay: 0.4s;">
+        <div class="stat-icon info">
+          <i class="fa fa-tasks"></i>
+        </div>
+        <div class="stat-content">
+          <h3 class="stat-title">Pending Tasks</h3>
+          <p class="stat-value count-up" data-count="17">0</p>
+          <p class="stat-change neutral">0% <span>vs last period</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Charts Section -->
+  <section class="dashboard-charts">
+    <div class="charts-grid">
+      <div class="chart-card fade-in-up" style="animation-delay: 0.5s;">
+        <div class="card-header">
+          <h3>Revenue Trends</h3>
+          <div class="card-actions">
+            <button class="btn btn-sm btn-outline">Export</button>
+            <button class="btn btn-sm btn-outline">
+              <i class="fa fa-ellipsis-h"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-placeholder" id="revenue-chart">
+            <!-- Chart will be rendered here by JavaScript -->
+            <div class="placeholder-chart"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chart-card fade-in-up" style="animation-delay: 0.6s;">
+        <div class="card-header">
+          <h3>Sales by Category</h3>
+          <div class="card-actions">
+            <button class="btn btn-sm btn-outline">Export</button>
+            <button class="btn btn-sm btn-outline">
+              <i class="fa fa-ellipsis-h"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-placeholder" id="category-chart">
+            <!-- Chart will be rendered here by JavaScript -->
+            <div class="placeholder-chart donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Activity -->
+  <section class="recent-activity fade-in-up" style="animation-delay: 0.7s;">
+    <div class="card">
+      <div class="card-header">
+        <h3>Recent Activity</h3>
+        <div class="card-actions">
+          <button class="btn btn-sm btn-outline">View All</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="activity-list">
+          <div class="activity-item slide-in-right" style="animation-delay: 0.1s;">
+            <div class="activity-icon success">
+              <i class="fa fa-dollar-sign"></i>
+            </div>
+            <div class="activity-content">
+              <h4>New Sale</h4>
+              <p>Order #38294 was placed for $1,200</p>
+              <span class="activity-time">2 hours ago</span>
+            </div>
+          </div>
+          
+          <div class="activity-item slide-in-right" style="animation-delay: 0.2s;">
+            <div class="activity-icon warning">
+              <i class="fa fa-user"></i>
+            </div>
+            <div class="activity-content">
+              <h4>New Customer</h4>
+              <p>John Smith registered a new account</p>
+              <span class="activity-time">5 hours ago</span>
+            </div>
+          </div>
+          
+          <div class="activity-item slide-in-right" style="animation-delay: 0.3s;">
+            <div class="activity-icon info">
+              <i class="fa fa-check"></i>
+            </div>
+            <div class="activity-content">
+              <h4>Task Completed</h4>
+              <p>Inventory check was completed by Jane</p>
+              <span class="activity-time">Yesterday</span>
+            </div>
+          </div>
+          
+          <div class="activity-item slide-in-right" style="animation-delay: 0.4s;">
+            <div class="activity-icon danger">
+              <i class="fa fa-exclamation-triangle"></i>
+            </div>
+            <div class="activity-content">
+              <h4>Low Stock Alert</h4>
+              <p>Product SKU-7829 is running low on stock</p>
+              <span class="activity-time">Yesterday</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="quick-actions fade-in-up" style="animation-delay: 0.8s;">
+    <h3>Quick Actions</h3>
+    <div class="actions-grid">
+      <a href="/app/sales-order/new" class="action-card scale-in" style="animation-delay: 0.1s;">
+        <div class="action-icon primary">
+          <i class="fa fa-plus"></i>
+        </div>
+        <h4>New Order</h4>
+      </a>
+      
+      <a href="/app/item/new" class="action-card scale-in" style="animation-delay: 0.2s;">
+        <div class="action-icon success">
+          <i class="fa fa-box"></i>
+        </div>
+        <h4>Add Product</h4>
+      </a>
+      
+      <a href="/app/sales-invoice/new" class="action-card scale-in" style="animation-delay: 0.3s;">
+        <div class="action-icon info">
+          <i class="fa fa-file-invoice"></i>
+        </div>
+        <h4>Create Invoice</h4>
+      </a>
+      
+      <a href="/app/query-report" class="action-card scale-in" style="animation-delay: 0.4s;">
+        <div class="action-icon warning">
+          <i class="fa fa-chart-bar"></i>
+        </div>
+        <h4>Generate Report</h4>
+      </a>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  frappe.ready(function() {
+    // Initialize animations and interactive elements
+    initCountUp();
+    initScrollAnimations();
+    
+    // Simulate chart loading
+    setTimeout(function() {
+      document.querySelectorAll('.placeholder-chart').forEach(function(chart) {
+        chart.classList.add('loaded');
+      });
+    }, 1500);
+  });
+
+  function initCountUp() {
+    // Simple count-up animation for statistics
+    document.querySelectorAll('.count-up').forEach(function(element) {
+      const target = parseInt(element.getAttribute('data-count'));
+      const duration = 2000; // 2 seconds
+      const step = Math.ceil(target / (duration / 50)); // Update every 50ms
+      let current = 0;
+      
+      const timer = setInterval(function() {
+        current += step;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = current.toLocaleString();
+        }
+      }, 50);
+    });
+  }
+
+  function initScrollAnimations() {
+    // Add scroll-triggered animations
+    const elements = document.querySelectorAll('.fade-in-up, .fade-in, .slide-in-left, .slide-in-right, .scale-in');
+    
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      elements.forEach(element => {
+        observer.observe(element);
+      });
+    } else {
+      // Fallback for browsers that don't support IntersectionObserver
+      elements.forEach(element => {
+        element.classList.add('animate');
+      });
+    }
+  }
+</script>
+{% endblock %}

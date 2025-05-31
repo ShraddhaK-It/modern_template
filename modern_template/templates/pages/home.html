@@ -1,0 +1,137 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ _("Home") }}{% endblock %}
+
+{% block page_content %}
+<div class="new-temp-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="fade-in-up">Welcome to Your Modern Frappe Application</h1>
+      <p class="subtitle slide-in-right">A professional business application with enhanced UI and animations</p>
+      <div class="cta-container fade-in">
+        <a href="/app" class="btn-primary">Get Started</a>
+        <a href="/about" class="btn-secondary">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-image slide-in-left">
+      <!-- Placeholder for hero image -->
+      <div class="placeholder-image"></div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2 class="section-title">Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card fade-in-up" style="animation-delay: 0.1s;">
+        <div class="feature-icon">
+          <i class="fa fa-chart-bar"></i>
+        </div>
+        <h3>Modern Dashboard</h3>
+        <p>Interactive analytics and business insights at a glance</p>
+      </div>
+      <div class="feature-card fade-in-up" style="animation-delay: 0.2s;">
+        <div class="feature-icon">
+          <i class="fa fa-edit"></i>
+        </div>
+        <h3>Intuitive Forms</h3>
+        <p>Streamlined data entry with validation and auto-suggestions</p>
+      </div>
+      <div class="feature-card fade-in-up" style="animation-delay: 0.3s;">
+        <div class="feature-icon">
+          <i class="fa fa-file-alt"></i>
+        </div>
+        <h3>Advanced Reports</h3>
+        <p>Comprehensive reporting with filtering and export options</p>
+      </div>
+      <div class="feature-card fade-in-up" style="animation-delay: 0.4s;">
+        <div class="feature-icon">
+          <i class="fa fa-mobile-alt"></i>
+        </div>
+        <h3>Mobile Responsive</h3>
+        <p>Optimized experience across all devices and screen sizes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-item count-up">
+        <span class="stat-number" data-count="98">0</span>
+        <span class="stat-symbol">%</span>
+        <p class="stat-label">User Satisfaction</p>
+      </div>
+      <div class="stat-item count-up">
+        <span class="stat-number" data-count="50">0</span>
+        <span class="stat-symbol">+</span>
+        <p class="stat-label">Business Processes</p>
+      </div>
+      <div class="stat-item count-up">
+        <span class="stat-number" data-count="24">0</span>
+        <span class="stat-symbol">/7</span>
+        <p class="stat-label">Support & Availability</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to transform your business?</h2>
+      <p>Get started with our modern business application template today.</p>
+      <a href="/app" class="btn-primary pulse">Get Started</a>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  frappe.ready(function() {
+    // Initialize animations and interactive elements
+    initCountUp();
+    initScrollAnimations();
+  });
+
+  function initCountUp() {
+    // Simple count-up animation for statistics
+    document.querySelectorAll('.count-up .stat-number').forEach(function(element) {
+      const target = parseInt(element.getAttribute('data-count'));
+      const duration = 2000; // 2 seconds
+      const step = Math.ceil(target / (duration / 50)); // Update every 50ms
+      let current = 0;
+      
+      const timer = setInterval(function() {
+        current += step;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = current;
+        }
+      }, 50);
+    });
+  }
+
+  function initScrollAnimations() {
+    // Add scroll-triggered animations
+    const elements = document.querySelectorAll('.fade-in-up, .fade-in, .slide-in-left, .slide-in-right');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    elements.forEach(element => {
+      observer.observe(element);
+    });
+  }
+</script>
+{% endblock %}

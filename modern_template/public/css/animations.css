@@ -1,0 +1,253 @@
+/* 
+ * animations.css - Animation library for Modern Template Frappe App
+ * Modern, business-appropriate animations and transitions
+ */
+
+/* ===== Animation Keyframes ===== */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Slide In Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ===== Animation Classes ===== */
+
+/* Fade In */
+.fade-in {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.fade-in.animate {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Fade In Up */
+.fade-in-up {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+}
+
+.fade-in-up.animate {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Slide In Left */
+.slide-in-left {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(-50px, 0, 0);
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+}
+
+.slide-in-left.animate {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Slide In Right */
+.slide-in-right {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(50px, 0, 0);
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+}
+
+.slide-in-right.animate {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Scale In */
+.scale-in {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+}
+
+.scale-in.animate {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Pulse Animation */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Shimmer Effect (for loading states) */
+.shimmer {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* ===== Frappe-specific Animation Overrides ===== */
+
+/* Page transitions */
+.page-container {
+  transition: opacity 0.3s ease;
+}
+
+/* Form field focus animations */
+.frappe-control input:focus,
+.frappe-control select:focus,
+.frappe-control textarea:focus {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Button hover/active animations */
+.btn:not(:disabled) {
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+/* List view row hover animations */
+.list-row {
+  transition: background-color 0.2s ease;
+}
+
+/* Card hover animations */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* Responsive Animation Adjustments */
+@media (max-width: 768px) {
+  .fade-in-up {
+    transform: translate3d(0, 15px, 0);
+  }
+
+  .slide-in-left,
+  .slide-in-right {
+    transform: translate3d(25px, 0, 0);
+  }
+
+  .scale-in {
+    transform: scale(0.95);
+  }
+
+  /* Shorter durations for mobile */
+  .fade-in,
+  .fade-in-up,
+  .slide-in-left,
+  .slide-in-right,
+  .scale-in {
+    transition-duration: 0.4s;
+  }
+}
+
+/* Option to disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1;
+    visibility: visible;
+    transform: none !important;
+  }
+}
